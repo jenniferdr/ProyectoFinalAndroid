@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "84740820633",
+    "firebase_url": "https://planificadordeturnos.firebaseio.com",
+    "project_id": "planificadordeturnos",
+    "storage_bucket": "planificadordeturnos.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:84740820633:android:8283363f37957ce3",
+        "android_client_info": {
+          "package_name": "com.desafiolatam.planificadordeturnos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "84740820633-lkggct583ppbg9k9ndr0cukenstlh35t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.desafiolatam.planificadordeturnos",
+            "certificate_hash": "76c1cd633a438aacb420c9f12794255d6ba8e14c"
+          }
+        },
+        {
+          "client_id": "84740820633-tdu4f8830nvasahjk0ucis2m6h1b6pbj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArlrjyYV_4aXG-1jAeKhfyJ7IfI3RDOBI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "84740820633-tdu4f8830nvasahjk0ucis2m6h1b6pbj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
