@@ -26,19 +26,19 @@ import planificadordeturnos.models.Shift;
 public class BusyShiftsFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private FirebaseRecyclerAdapter<Shift, ShiftsRecyclerAdapter.ShiftViewHolder> mAdapter;
-    private OnClicks onClickNew;
+    private OnClicks onClicks;
 
     public BusyShiftsFragment() {
         // Required empty public constructor
     }
 
     public void setOnClick(OnClicks onClick){
-        this.onClickNew = onClick;
+        this.onClicks = onClick;
     }
 
-    public static BusyShiftsFragment newInstance(OnClicks onClickNew) {
+    public static BusyShiftsFragment newInstance(OnClicks onClicks) {
         BusyShiftsFragment fragment = new BusyShiftsFragment();
-        fragment.setOnClick(onClickNew);
+        fragment.setOnClick(onClicks);
         /*Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -79,7 +79,7 @@ public class BusyShiftsFragment extends Fragment {
                         .setQuery(query, Shift.class)
                         .build();
 
-        mAdapter = new ShiftsRecyclerAdapter(options);
+        mAdapter = new ShiftsRecyclerAdapter(options,onClicks);
         mRecyclerView.setAdapter(mAdapter);
     }
 

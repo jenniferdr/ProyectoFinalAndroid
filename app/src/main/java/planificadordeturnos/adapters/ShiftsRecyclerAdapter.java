@@ -12,26 +12,30 @@ import android.widget.TextView;
 import com.desafiolatam.planificadordeturnos.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
+import planificadordeturnos.OnClicks;
 import planificadordeturnos.models.Shift;
 
 public class ShiftsRecyclerAdapter extends FirebaseRecyclerAdapter<Shift, ShiftsRecyclerAdapter.ShiftViewHolder>{
 
-    public ShiftsRecyclerAdapter(@NonNull FirebaseRecyclerOptions<Shift> options) {
+    private OnClicks onClick;
+
+    public ShiftsRecyclerAdapter(@NonNull FirebaseRecyclerOptions<Shift> options, OnClicks onClicks) {
         super(options);
+        this.onClick = onClicks;
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ShiftViewHolder holder, int position, @NonNull Shift model) {
+    protected void onBindViewHolder(@NonNull ShiftViewHolder holder, int position, @NonNull final Shift model) {
         holder.dateTv.setText(model.getDate().toString());
         holder.placeTv.setText(model.getPlace());
         holder.hourTv.setText(model.getStartHour() + " - " + model.getEndHour());
-        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onClickNew.onClick(model);
+                onClick.onClickDetail(model);
 
             }
-        });*/
+        });
     }
 
     @NonNull

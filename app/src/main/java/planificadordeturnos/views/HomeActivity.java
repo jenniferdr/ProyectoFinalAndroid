@@ -1,5 +1,6 @@
 package planificadordeturnos.views;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,6 +22,7 @@ import com.desafiolatam.planificadordeturnos.R;
 
 import planificadordeturnos.OnClicks;
 import planificadordeturnos.adapters.HomePagerAdapter;
+import planificadordeturnos.models.Shift;
 
 public class HomeActivity extends AppCompatActivity implements OnClicks {
 
@@ -76,8 +78,10 @@ public class HomeActivity extends AppCompatActivity implements OnClicks {
     }
 
     @Override
-    public void onClickDetail() {
-
+    public void onClickDetail(Shift shift) {
+        Intent intent = new Intent(this, DetailShiftActivity.class);
+        intent.putExtra("Shift",shift);
+        startActivity(intent);
     }
 
     /**
