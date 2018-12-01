@@ -11,10 +11,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.desafiolatam.planificadordeturnos.R;
+import com.google.firebase.database.FirebaseDatabase;
 
 import planificadordeturnos.models.Shift;
+import planificadordeturnos.models.User;
 
 public class DetailShiftActivity extends AppCompatActivity {
+
+    private static FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,7 @@ public class DetailShiftActivity extends AppCompatActivity {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         Intent intent = getIntent();
-        Shift shift = (Shift) getIntent().getSerializableExtra("Shift");
+        final Shift shift = (Shift) getIntent().getSerializableExtra("Shift");
 
         dateDetailTv.setText(shift.getDate());
         placeDetailTv.setText(shift.getPlace());
@@ -44,9 +48,9 @@ public class DetailShiftActivity extends AppCompatActivity {
         showLeads.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent = new Intent(this, ShowLeadsActivity.class);
-                pasar el id del turno
-                startActivity(intent);*/
+                Intent intent = new Intent(view.getContext(), ShowLeadsActivity.class);
+                intent.putExtra("shiftID",shift.getId());
+                startActivity(intent);
             }
         });
 
@@ -54,8 +58,14 @@ public class DetailShiftActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Postular
-                // crear un candidato con el uid del usuario y nombre
-                // candidatos.uid.idTurno
+                User user = new User();
+                user.setId("xccvgdft");
+                user.setName("Jennifer");
+                user.setSpeciality("Paciencia");
+
+                database.getReference("candidatosPorTurno").child(shift.getId()).child(user.getId())
+                        .setValue(user);
+
                 Snackbar.make(view, "Replace with your own action "+ idShift, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
