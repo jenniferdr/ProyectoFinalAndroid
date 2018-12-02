@@ -63,10 +63,11 @@ public class DetailShiftActivity extends AppCompatActivity {
                 user.setName("Jennifer");
                 user.setSpeciality("Paciencia");
 
+                // Set user to the shift
                 database.getReference("candidatosPorTurno").child(shift.getId()).child(user.getId())
                         .setValue(user);
 
-                Snackbar.make(view, "Replace with your own action "+ idShift, Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Te acabas de postular a este turno", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
