@@ -12,9 +12,7 @@
         <activity
             android:name="planificadordeturnos.views.HomeActivity"
             android:label="@string/shifts"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name="planificadordeturnos.views.DetailShiftActivity"
             android:label="@string/title_activity_detail_shift"
@@ -27,6 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="planificadordeturnos.views.CreateEditShiftActivity"></activity>
     </application>
 
 </manifest>

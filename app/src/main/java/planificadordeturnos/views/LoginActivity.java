@@ -1,6 +1,8 @@
 package planificadordeturnos.views;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -76,29 +78,37 @@ public class LoginActivity extends AppCompatActivity {
 
     private void logged(){
 
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        final User user = new User();
-        user.setId(firebaseUser.getUid());
-        user.setName(firebaseUser.getDisplayName());
-        user.setProfile("Candidato");
-
-        DatabaseReference mPostReference = database.getReference("usuarios").child(user.getId());
-
+        // Save user in firebase database
+        DatabaseReference mPostReference = database.getReference("users").child(firebaseUser.getUid());
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
+                // Save in Shared Preferences
+                SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+
                 // Get Post object and use the values to update the UI
                 User userDatabase = dataSnapshot.getValue(User.class);
                 if(userDatabase == null){
-                    database.getReference("usuarios").child(user.getId()).setValue(user);
+                    final User user = new User();
+                    user.setId(firebaseUser.getUid());
+                    user.setName(firebaseUser.getDisplayName());
+                    user.setProfile("Candidato");
+
+                    editor.putString("Profile", user.getProfile());
+                    database.getReference("users").child(user.getId()).setValue(user);
+                }else{
+                    editor.putString("Profile", userDatabase.getProfile());
                 }
+
+                editor.commit();
 
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
-
-                // ...
             }
 
             @Override
@@ -109,5 +119,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
         mPostReference.addValueEventListener(postListener);
+
+
     }
 }

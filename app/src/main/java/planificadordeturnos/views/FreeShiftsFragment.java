@@ -77,7 +77,7 @@ public class FreeShiftsFragment extends Fragment {
 
         Query query = FirebaseDatabase.getInstance()
                 .getReference()
-                .child("turnos");
+                .child("Free Shifts");
 
         FirebaseRecyclerOptions<Shift> options =
                 new FirebaseRecyclerOptions.Builder<Shift>()
@@ -117,7 +117,8 @@ public class FreeShiftsFragment extends Fragment {
         //noinspection SimplifiableIfStatement
         switch (id) {
             case R.id.action_add:
-            return true;
+                startActivity(new Intent(getActivity(), CreateEditShiftActivity.class));
+                return true;
 
             case R.id.action_close_session:
                 AuthUI.getInstance().signOut(getActivity())

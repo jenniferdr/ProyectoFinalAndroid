@@ -1,6 +1,8 @@
 package planificadordeturnos.views;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,6 +13,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.desafiolatam.planificadordeturnos.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import planificadordeturnos.models.Shift;
@@ -18,7 +23,8 @@ import planificadordeturnos.models.User;
 
 public class DetailShiftActivity extends AppCompatActivity {
 
-    private static FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private static DatabaseReference leadsByShiftRef = FirebaseDatabase.getInstance().getReference("leadsByShift");
+    private static DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,18 +63,29 @@ public class DetailShiftActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Postular
-                User user = new User();
-                user.setId("xccvgdft");
-                user.setName("Jennifer");
-                user.setSpeciality("Paciencia");
+                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-                // Set user to the shift
-                database.getReference("candidatosPorTurno").child(shift.getId()).child(user.getId())
-                        .setValue(user);
+                SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+                String userProfile = sharedPref.getString("Profile", "Candidato1");
 
-                Snackbar.make(view, "Te acabas de postular a este turno", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                if (userProfile == "Candidato") {
+                    // Postular
+                    User user = new User();
+                    user.setId(firebaseUser.getUid());
+                    user.setName(firebaseUser.getDisplayName());
+                    user.setSpeciality("");
+
+                    // Set user to the shift
+                    leadsByShiftRef.child(shift.getId()).child(user.getId())
+                            .setValue(user);
+
+                    Snackbar.make(view, "Te acabas de postular a este turno", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }else{
+                    Intent intent = new Intent(getApplicationContext(), CreateEditShiftActivity.class);
+                    intent.putExtra("Shift",shift);
+                    startActivity(intent);
+                }
             }
         });
 
