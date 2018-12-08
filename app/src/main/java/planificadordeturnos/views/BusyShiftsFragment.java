@@ -72,7 +72,7 @@ public class BusyShiftsFragment extends Fragment {
 
         Query query = FirebaseDatabase.getInstance()
                 .getReference()
-                .child("turnos ocupados");
+                .child("Busy Shifts");
 
         FirebaseRecyclerOptions<Shift> options =
                 new FirebaseRecyclerOptions.Builder<Shift>()

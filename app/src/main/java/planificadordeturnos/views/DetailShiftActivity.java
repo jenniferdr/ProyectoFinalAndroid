@@ -54,8 +54,8 @@ public class DetailShiftActivity extends AppCompatActivity {
         showLeads.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ShowLeadsActivity.class);
-                intent.putExtra("shiftID",shift.getId());
+                Intent intent = new Intent(DetailShiftActivity.this, ShowLeadsActivity.class);
+                intent.putExtra("Shift",shift);
                 startActivity(intent);
             }
         });
@@ -65,10 +65,10 @@ public class DetailShiftActivity extends AppCompatActivity {
             public void onClick(View view) {
                 FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-                SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-                String userProfile = sharedPref.getString("Profile", "Candidato1");
+                SharedPreferences sharedPref = DetailShiftActivity.this.getSharedPreferences("plannerApp", Context.MODE_PRIVATE);
+                String userProfile = sharedPref.getString("Profile", "Candidato");
 
-                if (userProfile == "Candidato") {
+                if (userProfile.equalsIgnoreCase("Candidato")) {
                     // Postular
                     User user = new User();
                     user.setId(firebaseUser.getUid());

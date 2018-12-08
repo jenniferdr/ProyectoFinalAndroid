@@ -12,26 +12,30 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 import planificadordeturnos.models.User;
+import planificadordeturnos.onClickLeadList;
 
 public class LeadsListAdapter extends FirebaseRecyclerAdapter<User, LeadsListAdapter.LeadViewHolder> {
 
+    onClickLeadList onClick;
 
-    public LeadsListAdapter(@NonNull FirebaseRecyclerOptions<User> options) {
+    public LeadsListAdapter(@NonNull FirebaseRecyclerOptions<User> options, onClickLeadList onClick) {
         super(options);
+        this.onClick = onClick;
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull LeadViewHolder holder, int position, @NonNull User model) {
+    protected void onBindViewHolder(@NonNull LeadViewHolder holder, int position, @NonNull final User model) {
         holder.userNameTv.setText(model.getName() + " (" + model.getSpeciality() + ")");
 
-        /*
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onClickNew.onClick(model);
-
+                // Query shared preferences
+                //if( esAdmin ) {
+                    onClick.onClickLead(model);
+                //}
             }
-        });*/
+        });
     }
 
     @NonNull

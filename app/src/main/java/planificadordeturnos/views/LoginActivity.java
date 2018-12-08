@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 // Save in Shared Preferences
-                SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences sharedPref = LoginActivity.this.getSharedPreferences("plannerApp", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
 
                 // Get Post object and use the values to update the UI
@@ -104,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("Profile", userDatabase.getProfile());
                 }
 
-                editor.commit();
+                editor.apply();
 
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 startActivity(intent);

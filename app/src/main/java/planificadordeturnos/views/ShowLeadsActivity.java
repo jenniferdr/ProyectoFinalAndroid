@@ -14,12 +14,13 @@ import com.google.firebase.database.Query;
 import planificadordeturnos.adapters.LeadsListAdapter;
 import planificadordeturnos.models.Shift;
 import planificadordeturnos.models.User;
+import planificadordeturnos.onClickLeadList;
 
-public class ShowLeadsActivity extends AppCompatActivity {
+public class ShowLeadsActivity extends AppCompatActivity implements onClickLeadList {
 
     private RecyclerView mRecyclerView;
     private FirebaseRecyclerAdapter<User, LeadsListAdapter.LeadViewHolder> mAdapter;
-    //private OnClickNew onClickNew;
+    private Shift shift;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +33,19 @@ public class ShowLeadsActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        shift = (Shift) getIntent().getSerializableExtra("Shift");
+
         Query query = FirebaseDatabase.getInstance()
                 .getReference()
-                .child("candidatosPorTurno")
-                .child(getIntent().getStringExtra("shiftID"));
+                .child("leadsByShift")
+                .child(shift.getId());
 
         FirebaseRecyclerOptions<User> options =
                 new FirebaseRecyclerOptions.Builder<User>()
                         .setQuery(query, User.class)
                         .build();
 
-        mAdapter = new LeadsListAdapter(options);
+        mAdapter = new LeadsListAdapter(options, (onClickLeadList) this);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -57,5 +60,21 @@ public class ShowLeadsActivity extends AppCompatActivity {
     public void onStop() {
         super.onStop();
         mAdapter.stopListening();
+    }
+
+    @Override
+    public void onClickLead(User lead) {
+
+        shift.setAssignedLead(lead.getName());
+
+        FirebaseDatabase.getInstance()
+                .getReference()
+                .child("Free Shifts").child(shift.getId()).removeValue();
+
+        FirebaseDatabase.getInstance()
+                .getReference()
+                .child("Busy Shifts").child(shift.getId()).setValue(shift);
+
+
     }
 }
