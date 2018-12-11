@@ -116,9 +116,6 @@ public class FreeShiftsFragment extends Fragment {
 
         //noinspection SimplifiableIfStatement
         switch (id) {
-            case R.id.action_add:
-                startActivity(new Intent(getActivity(), CreateEditShiftActivity.class));
-                return true;
 
             case R.id.action_close_session:
                 AuthUI.getInstance().signOut(getActivity())

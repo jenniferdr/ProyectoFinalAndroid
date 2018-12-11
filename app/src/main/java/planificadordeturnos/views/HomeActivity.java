@@ -1,6 +1,9 @@
 package planificadordeturnos.views;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -35,6 +38,8 @@ public class HomeActivity extends AppCompatActivity implements OnClicks {
         setContentView(R.layout.activity_home);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addFab);
+
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -47,6 +52,20 @@ public class HomeActivity extends AppCompatActivity implements OnClicks {
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+
+        SharedPreferences sharedPref = HomeActivity.this.getSharedPreferences("plannerApp", Context.MODE_PRIVATE);
+        String userProfile = sharedPref.getString("Profile", "Candidato");
+
+        if(!userProfile.equalsIgnoreCase("Administrador")){
+            fab.hide();
+        }else{
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(HomeActivity.this, CreateEditShiftActivity.class));
+                }
+            });
+        }
     }
 
     /*@Override

@@ -60,6 +60,13 @@ public class DetailShiftActivity extends AppCompatActivity {
             }
         });
 
+        SharedPreferences sharedPref = DetailShiftActivity.this.getSharedPreferences("plannerApp", Context.MODE_PRIVATE);
+        String userProfile = sharedPref.getString("Profile", "Candidato");
+
+        if(userProfile.equalsIgnoreCase("Administrador")){
+            fab.setImageResource(android.R.drawable.ic_menu_edit);
+        }
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
