@@ -35,7 +35,7 @@ public class DetailShiftActivity extends AppCompatActivity {
         TextView placeDetailTv = findViewById(R.id.placeDetailTv);
         TextView hoursDetailTv = findViewById(R.id.hoursDetailTv);
         TextView assignedToDetailTv = findViewById(R.id.assignedToDetailTv);
-        Button showLeads = findViewById(R.id.showLeadsBtn);
+        Button showLeadsBtn = findViewById(R.id.showLeadsBtn);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -51,7 +51,7 @@ public class DetailShiftActivity extends AppCompatActivity {
 
         final String idShift = shift.getId();
 
-        showLeads.setOnClickListener(new View.OnClickListener() {
+        showLeadsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DetailShiftActivity.this, ShowLeadsActivity.class);
@@ -65,6 +65,7 @@ public class DetailShiftActivity extends AppCompatActivity {
 
         if(userProfile.equalsIgnoreCase("Administrador")){
             fab.setImageResource(android.R.drawable.ic_menu_edit);
+            showLeadsBtn.setText("Asignar \n Candidato");
         }
 
         fab.setOnClickListener(new View.OnClickListener() {
