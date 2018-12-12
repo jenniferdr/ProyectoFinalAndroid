@@ -1,56 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-app:layout_behavior="@string/appbar_scrolling_view_behavior"
-tools:context="planificadordeturnos.views.DetailShiftActivity"
-tools:showIn="@layout/activity_detail_shift">
-
-<TextView
-    android:id="@+id/dateDetailTv"
-    android:tooltipText="Fecha del turno"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="planificadordeturnos.views.DetailShiftActivity"
+    tools:showIn="@layout/activity_detail_shift">
 
-<TextView
-    android:id="@+id/placeDetailTv"
-    android:tooltipText="Lugar de trabajo"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/title_date"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/box_bg_rounded_corners"
+
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:paddingStart="10dp"
+        android:letterSpacing="0.03"
+        android:lineSpacingExtra="4.2sp"
+        android:text="@string/date"
+        android:textColor="@color/textIcons"
+        android:textSize="17sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/dateDetailTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_date"
+        android:layout_marginTop="10dp"
+        android:paddingStart="10dp"
+
+        android:layout_marginBottom="5dp"
+        android:letterSpacing="0.17"
+        android:lineSpacingExtra="4.3sp"
+        android:text="CLP $1.532,04"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="14sp"
+         />
+
+    <TextView
+        android:id="@+id/title_place"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/box_bg_rounded_corners"
+        android:layout_below="@+id/dateDetailTv"
+        android:paddingStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:letterSpacing="0.03"
+        android:lineSpacingExtra="4.2sp"
+        android:text="@string/place"
+        android:textColor="@color/textIcons"
+        android:textSize="17sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/placeDetailTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_place"
+        android:layout_marginTop="10dp"
+        android:paddingStart="10dp"
+
+        android:layout_marginBottom="5dp"
+        android:letterSpacing="0.17"
+        android:lineSpacingExtra="4.3sp"
+        android:text="CLP $1.136,01"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="14sp"
+        />
+
+    <TextView
+        android:id="@+id/title_hours"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/box_bg_rounded_corners"
+        android:layout_below="@+id/placeDetailTv"
+        android:paddingStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:letterSpacing="0.03"
+        android:lineSpacingExtra="4.2sp"
+        android:text="@string/hour"
+        android:textColor="@color/textIcons"
+        android:textSize="17sp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/hoursDetailTv"
-        android:tooltipText="Lugar de trabajo"
-        android:layout_width="match_parent" 
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_below="@+id/title_hours"
+        android:layout_marginTop="10dp"
+        android:paddingStart="10dp"
+        android:layout_marginBottom="5dp"
 
+        android:letterSpacing="0.17"
+        android:lineSpacingExtra="4.3sp"
+        android:text="CLP $1.136,01"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="14sp"
+
+        />
         <TextView
-            android:text="Asignado a:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
+            android:id="@+id/title_assignedTo"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/box_bg_rounded_corners"
+            android:layout_below="@+id/hoursDetailTv"
+            android:paddingStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:letterSpacing="0.03"
+            android:lineSpacingExtra="4.2sp"
+            android:text="@string/assigned_to"
+            android:textColor="@color/textIcons"
+            android:textSize="17sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/assignedToDetailTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_assignedTo"
+            android:layout_marginTop="10dp"
+            android:paddingStart="10dp"
+            android:layout_marginBottom="5dp"
 
-    </LinearLayout>
+            android:letterSpacing="0.17"
+            android:lineSpacingExtra="4.3sp"
+            android:text="CLP $1.136,01"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="14sp"/>
+
+    </RelativeLayout>
 
     <Button
         android:id="@+id/showLeadsBtn"
-        android:text="Ver Candidatos"
+        android:text="Ver \n Candidatos"
+        android:background="@drawable/button_bg_rounded_corners"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/textIcons"
+        />
 
 </LinearLayout>
 
