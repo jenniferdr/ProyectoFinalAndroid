@@ -102,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                     database.getReference("users").child(user.getId()).setValue(user);
                 }else{
                     editor.putString("Profile", userDatabase.getProfile());
+                    editor.putString("Speciality",userDatabase.getSpeciality());
                 }
 
                 editor.apply();

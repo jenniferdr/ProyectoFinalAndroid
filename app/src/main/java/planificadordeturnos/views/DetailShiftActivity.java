@@ -35,6 +35,7 @@ public class DetailShiftActivity extends AppCompatActivity {
         TextView placeDetailTv = findViewById(R.id.placeDetailTv);
         TextView hoursDetailTv = findViewById(R.id.hoursDetailTv);
         TextView assignedToDetailTv = findViewById(R.id.assignedToDetailTv);
+        TextView titleAssignedTo = findViewById(R.id.title_assignedTo);
         Button showLeadsBtn = findViewById(R.id.showLeadsBtn);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -48,6 +49,9 @@ public class DetailShiftActivity extends AppCompatActivity {
         placeDetailTv.setText(shift.getPlace());
         hoursDetailTv.setText(shift.getStartHour() + " - " + shift.getEndHour());
         assignedToDetailTv.setText(shift.getAssignedLead());
+        if( shift.getAssignedLead() == null){
+            titleAssignedTo.setVisibility(View.GONE);
+        }
 
         final String idShift = shift.getId();
 
@@ -81,7 +85,7 @@ public class DetailShiftActivity extends AppCompatActivity {
                     User user = new User();
                     user.setId(firebaseUser.getUid());
                     user.setName(firebaseUser.getDisplayName());
-                    user.setSpeciality("");
+                    user.setSpeciality(sharedPref.getString("Speciality","Sin especialidad"));
 
                     // Set user to the shift
                     leadsByShiftRef.child(shift.getId()).child(user.getId())
