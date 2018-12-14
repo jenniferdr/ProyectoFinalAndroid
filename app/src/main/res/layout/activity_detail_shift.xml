@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorLightPrimary"
     tools:context="planificadordeturnos.views.DetailShiftActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -36,6 +35,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_menu_agenda" />
+        app:srcCompat="@mipmap/baseline_assignment_turned_in_white_36" />
 
 </android.support.design.widget.CoordinatorLayout>

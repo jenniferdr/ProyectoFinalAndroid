@@ -35,6 +35,7 @@ public class CreateEditShiftActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final Shift shift = (Shift) getIntent().getSerializableExtra("Shift");
 
+
         if(shift != null){
             dateEt.setText(shift.getDate());
             placeEt.setText(shift.getPlace());

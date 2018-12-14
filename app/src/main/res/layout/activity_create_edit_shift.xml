@@ -1,41 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="planificadordeturnos.views.CreateEditShiftActivity">
 
-    <EditText
-        android:id="@+id/dateEt"
-        android:hint="Fecha del turno"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:layout_centerInParent="true">
 
-    <EditText
-        android:id="@+id/placeEt"
-        android:hint="Lugar de trabajo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/dateEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fecha del turno" />
 
-    <EditText
-        android:id="@+id/startHourEt"
-        android:hint="Hora de inicio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/placeEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dateEt"
+            android:hint="Lugar de trabajo" />
 
-    <EditText
-        android:id="@+id/endHourEt"
-        android:hint="Hora de finalizacion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/startHourEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/placeEt"
+            android:hint="Hora de inicio" />
 
-    <Button
-        android:id="@+id/saveShiftBtn"
-        android:text="Guardar turno"
-        android:background="@color/colorAccent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/endHourEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/startHourEt"
+            android:hint="Hora de finalizacion" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/saveShiftBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/endHourEt"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_bg_rounded_corners"
+            android:textColor="@color/textIcons"
+            android:text="Guardar turno" />
+    </RelativeLayout>
+
+</RelativeLayout>

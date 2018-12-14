@@ -64,8 +64,8 @@ public class DetailShiftActivity extends AppCompatActivity {
         String userProfile = sharedPref.getString("Profile", "Candidato");
 
         if(userProfile.equalsIgnoreCase("Administrador")){
-            fab.setImageResource(android.R.drawable.ic_menu_edit);
-            showLeadsBtn.setText("Asignar \n Candidato");
+            fab.setImageResource(R.mipmap.baseline_edit_white_36);
+            showLeadsBtn.setText("Asignar Candidato");
         }
 
         fab.setOnClickListener(new View.OnClickListener() {
