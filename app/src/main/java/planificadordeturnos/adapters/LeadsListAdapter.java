@@ -1,5 +1,7 @@
 package planificadordeturnos.adapters;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,17 +27,18 @@ public class LeadsListAdapter extends FirebaseRecyclerAdapter<User, LeadsListAda
 
     @Override
     protected void onBindViewHolder(@NonNull LeadViewHolder holder, int position, @NonNull final User model) {
-        holder.userNameTv.setText(model.getName() + " (" + model.getSpeciality() + ")");
+        holder.userNameTv.setText(model.getName());
+        holder.specialityTv.setText("Especialidad: " + model.getSpeciality());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Query shared preferences
-                //if( esAdmin ) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
                     onClick.onClickLead(model);
-                //}
-            }
-        });
+
+                }
+            });
+
     }
 
     @NonNull
@@ -50,10 +53,12 @@ public class LeadsListAdapter extends FirebaseRecyclerAdapter<User, LeadsListAda
     public class LeadViewHolder extends RecyclerView.ViewHolder {
 
         TextView userNameTv;
+        TextView specialityTv;
 
         public LeadViewHolder(View itemView) {
             super(itemView);
-            userNameTv = itemView.findViewById(R.id.userNameTV);
+            userNameTv = itemView.findViewById(R.id.userNameTv);
+            specialityTv = itemView.findViewById(R.id.specialityTv);
         }
     }
 }

@@ -1,5 +1,7 @@
 package planificadordeturnos.views;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -65,16 +67,20 @@ public class ShowLeadsActivity extends AppCompatActivity implements onClickLeadL
     @Override
     public void onClickLead(User lead) {
 
-        shift.setAssignedLead(lead.getName());
+        SharedPreferences sharedPref = ShowLeadsActivity.this.getSharedPreferences("plannerApp", Context.MODE_PRIVATE);
+        String userProfile = sharedPref.getString("Profile", "Candidato");
 
-        FirebaseDatabase.getInstance()
-                .getReference()
-                .child("Free Shifts").child(shift.getId()).removeValue();
+        if(userProfile.equalsIgnoreCase("Administrador")) {
+            shift.setAssignedLead(lead.getName());
 
-        FirebaseDatabase.getInstance()
-                .getReference()
-                .child("Busy Shifts").child(shift.getId()).setValue(shift);
+            FirebaseDatabase.getInstance()
+                    .getReference()
+                    .child("Free Shifts").child(shift.getId()).removeValue();
 
+            FirebaseDatabase.getInstance()
+                    .getReference()
+                    .child("Busy Shifts").child(shift.getId()).setValue(shift);
 
+        }
     }
 }
