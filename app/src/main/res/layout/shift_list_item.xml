@@ -11,7 +11,7 @@
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@mipmap/letra_t"
+        android:src="@mipmap/shift_item_image"
         />
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
