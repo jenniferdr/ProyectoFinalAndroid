@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,26 +24,26 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-import planificadordeturnos.OnClicks;
+import planificadordeturnos.OnClick;
 import planificadordeturnos.adapters.ShiftsRecyclerAdapter;
 import planificadordeturnos.models.Shift;
 
 public class FreeShiftsFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private FirebaseRecyclerAdapter<Shift, ShiftsRecyclerAdapter.ShiftViewHolder> mAdapter;
-    private OnClicks onClicks;
+    private OnClick onClick;
 
     public FreeShiftsFragment() {
         // Required empty public constructor
     }
 
-    public void setOnClick(OnClicks onClick){
-        this.onClicks = onClick;
+    public void setOnClick(OnClick onClick){
+        this.onClick = onClick;
     }
 
-    public static FreeShiftsFragment newInstance(OnClicks onClicks) {
+    public static FreeShiftsFragment newInstance(OnClick onClick) {
         FreeShiftsFragment fragment = new FreeShiftsFragment();
-        fragment.setOnClick(onClicks);
+        fragment.setOnClick(onClick);
         /*Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -74,6 +75,7 @@ public class FreeShiftsFragment extends Fragment {
         mRecyclerView = view.findViewById(R.id.recyclerV);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), LinearLayoutManager.VERTICAL));
 
         Query query = FirebaseDatabase.getInstance()
                 .getReference()
@@ -84,7 +86,7 @@ public class FreeShiftsFragment extends Fragment {
                         .setQuery(query, Shift.class)
                         .build();
 
-        mAdapter = new ShiftsRecyclerAdapter(options, onClicks);
+        mAdapter = new ShiftsRecyclerAdapter(options, onClick);
         mRecyclerView.setAdapter(mAdapter);
     }
 

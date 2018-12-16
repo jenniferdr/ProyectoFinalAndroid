@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Planificador de turnos</string>
+    <string name="app_name">Planner</string>
     <string name="shifts">Turnos</string>
     <string name="shiftDetails">Detalle del turno</string>
     <string name="action_settings">Settings</string>
@@ -13,7 +13,10 @@
     <string name="hour">Hora</string>
     <string name="assigned_to">Asignado a</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_detail_shift">DetailShiftActivity</string>
+    <string name="title_leads_activity">Candidatos</string>
+    <string name="title_new_shift_activity">Crear turno</string>
+    <string name="title_create_shift_activity">Editar turno</string>
+
 </resources>

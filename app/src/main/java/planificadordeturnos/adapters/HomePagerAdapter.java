@@ -3,27 +3,27 @@ package planificadordeturnos.adapters;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import planificadordeturnos.OnClicks;
+import planificadordeturnos.OnClick;
 import planificadordeturnos.views.BusyShiftsFragment;
 import planificadordeturnos.views.FreeShiftsFragment;
 
 public class HomePagerAdapter extends FragmentPagerAdapter {
 
-    private OnClicks onClicks;
+    private OnClick onClick;
 
-    public HomePagerAdapter(FragmentManager fm, OnClicks onClicks) {
+    public HomePagerAdapter(FragmentManager fm, OnClick onClick) {
         super(fm);
-        this.onClicks = onClicks;
+        this.onClick = onClick;
     }
 
     @Override
     public Fragment getItem(int position) {
         if(position == 0){
-            return FreeShiftsFragment.newInstance(onClicks);
+            return FreeShiftsFragment.newInstance(onClick);
         }else if(position == 1){
-            return BusyShiftsFragment.newInstance(onClicks);
+            return BusyShiftsFragment.newInstance(onClick);
         }
-        return FreeShiftsFragment.newInstance(onClicks);
+        return FreeShiftsFragment.newInstance(onClick);
     }
 
     @Override

@@ -2,8 +2,7 @@ package planificadordeturnos;
 
 import planificadordeturnos.models.Shift;
 
-public interface OnClicks {
+public interface OnClick {
 
-    //void onClickNew(GoodNew goodNew);
     void onClickDetail(Shift shift);
 }

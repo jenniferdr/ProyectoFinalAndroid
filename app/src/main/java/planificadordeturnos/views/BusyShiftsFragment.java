@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,7 +17,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-import planificadordeturnos.OnClicks;
+import planificadordeturnos.OnClick;
 import planificadordeturnos.adapters.ShiftsRecyclerAdapter;
 import planificadordeturnos.models.Shift;
 
@@ -26,19 +27,19 @@ import planificadordeturnos.models.Shift;
 public class BusyShiftsFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private FirebaseRecyclerAdapter<Shift, ShiftsRecyclerAdapter.ShiftViewHolder> mAdapter;
-    private OnClicks onClicks;
+    private OnClick onClick;
 
     public BusyShiftsFragment() {
         // Required empty public constructor
     }
 
-    public void setOnClick(OnClicks onClick){
-        this.onClicks = onClick;
+    public void setOnClick(OnClick onClick){
+        this.onClick = onClick;
     }
 
-    public static BusyShiftsFragment newInstance(OnClicks onClicks) {
+    public static BusyShiftsFragment newInstance(OnClick onClick) {
         BusyShiftsFragment fragment = new BusyShiftsFragment();
-        fragment.setOnClick(onClicks);
+        fragment.setOnClick(onClick);
         /*Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -69,6 +70,7 @@ public class BusyShiftsFragment extends Fragment {
         mRecyclerView = view.findViewById(R.id.recyclerV);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), LinearLayoutManager.VERTICAL));
 
         Query query = FirebaseDatabase.getInstance()
                 .getReference()
@@ -79,7 +81,7 @@ public class BusyShiftsFragment extends Fragment {
                         .setQuery(query, Shift.class)
                         .build();
 
-        mAdapter = new ShiftsRecyclerAdapter(options,onClicks);
+        mAdapter = new ShiftsRecyclerAdapter(options, onClick);
         mRecyclerView.setAdapter(mAdapter);
     }
 

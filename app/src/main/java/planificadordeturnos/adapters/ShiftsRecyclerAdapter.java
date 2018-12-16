@@ -12,16 +12,16 @@ import android.widget.TextView;
 import com.desafiolatam.planificadordeturnos.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
-import planificadordeturnos.OnClicks;
+import planificadordeturnos.OnClick;
 import planificadordeturnos.models.Shift;
 
 public class ShiftsRecyclerAdapter extends FirebaseRecyclerAdapter<Shift, ShiftsRecyclerAdapter.ShiftViewHolder>{
 
-    private OnClicks onClick;
+    private OnClick onClick;
 
-    public ShiftsRecyclerAdapter(@NonNull FirebaseRecyclerOptions<Shift> options, OnClicks onClicks) {
+    public ShiftsRecyclerAdapter(@NonNull FirebaseRecyclerOptions<Shift> options, OnClick onClick) {
         super(options);
-        this.onClick = onClicks;
+        this.onClick = onClick;
     }
 
     @Override

@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
                         .setAvailableProviders(Arrays.asList(
-                                new AuthUI.IdpConfig.GoogleBuilder().build(),
+                                /*new AuthUI.IdpConfig.GoogleBuilder().build(),*/
                                 new AuthUI.IdpConfig.EmailBuilder().build()/*,
                                 new AuthUI.IdpConfig.FacebookBuilder().build(),
                                 new AuthUI.IdpConfig.TwitterBuilder().build(),
@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                 new AuthUI.IdpConfig.PhoneBuilder().build()*/)).setIsSmartLockEnabled(false)
                         //.setTheme(R.style.LoginTheme)
-                        //.setLogo(R.mipmap.logo)
+                        //.setLogo(R.drawable)
                         .build(),
                 RC_SIGN_IN);
     }

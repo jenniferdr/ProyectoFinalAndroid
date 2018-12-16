@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.desafiolatam.planificadordeturnos.R;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +34,11 @@ public class CreateEditShiftActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final Shift shift = (Shift) getIntent().getSerializableExtra("Shift");
 
+        if(shift == null){
+            setTitle(R.string.title_new_shift_activity);
+        }else{
+            setTitle(R.string.title_create_shift_activity);
+        }
 
         if(shift != null){
             dateEt.setText(shift.getDate());
